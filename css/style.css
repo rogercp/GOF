@@ -1,0 +1,6 @@
+#gridCanvas{
+    position: relative !important;
+    border: lightgrey 1px solid;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
