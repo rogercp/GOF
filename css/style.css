@@ -1,4 +1,48 @@
+
+body {
+    font-family: "Open Sans", sans-serif;
+    padding-top: 54px;
+    color: #2b2e3b;
+  }
+  
+  @media (min-width: 992px) {
+    body {
+      padding-top: 0;
+    }
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Staatliches", cursive;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #2b2e3b;
+  }
+  
+  h1 {
+    font-size: 4rem;
+  }
+  
+  h2 {
+    font-size: 3.5rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
+  }
+
 #gridCanvas{
+    position: relative !important;
+    border: lightgrey 1px solid;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.presetCanvas{
     position: relative !important;
     border: lightgrey 1px solid;
     border-radius: 5px;

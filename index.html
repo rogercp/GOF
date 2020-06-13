@@ -41,11 +41,51 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
-<body onload="onload()" id="top">
-  <canvas id="gridCanvas" width="width" height="height">
+<body  onload="onload()" id="top">
+
+  <div class="d-flex flex-column justify-content-center align-items-center">
+
+<h1>
+  Conways Game Of Life
+</h1>
+<div class="d-flex flex-column flex-md-row" >
+  <button type="button" id="btnpause" class="btn btn-outline-dark m-1 ">Home</button>
+  <button type="button" id="btnpause" class="btn btn-outline-dark m-1 ">About</button>
+</div>
 
 
+  </div>
+
+<div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+
+
+  <div class="d-flex flex-column align-items-center m-5">
+    <canvas id="gridCanvas" width="500" height="500">
+    </canvas>
+    <div>
+      <button type="button" id="btnplay" class="btn btn-outline-dark m-1 ">play</button>
+      <button type="button" id="btnpause" class="btn btn-outline-dark m-1 ">pause</button>
+      <button type="button" id="btnstop" class="btn btn-outline-dark m-1 ">stop</button>
+    </div>
+  </div>
+  
+  
+<div class="d-flex flex-column m-5">
+  <canvas class="presetCanvas m-1" width="100" height="100">
+  </canvas><canvas class="presetCanvas m-1" width="100" height="100">
+  </canvas><canvas class="presetCanvas m-1" width="100" height="100">
+  </canvas><canvas class="presetCanvas m-1" width="100" height="100">
   </canvas>
+</div>
+
+
+</div>
+ 
+  
+
+
+
+ 
 
 </body>
 
