@@ -155,11 +155,11 @@ const onload = () => {
         }
     
         const pauseSimulator =(e)=>{
-            console.log("hitting")
+
+            console.log(programRunning,"prgramruunning")
 
             const pause = ()=>{
-                console.log("hitting")
-
+                window.cancelAnimationFrame(animation);
                 programRunning = false
                 console.log(programRunning,"prgramruunning")
 
@@ -167,30 +167,43 @@ const onload = () => {
             
             pause();
         }
-        const runSimulator = (e) =>{
 
-            while (programRunning) {
+        const runSimulator = async (e) =>{
+
+
+            let count = 0
+
+            console.log(programRunning,"running")
+
+            programRunning = true
+
+            // while (programRunning) {
+
 
                 console.log(programRunning,"prgramruunning")
 
                 const run = (mainCellArray) =>{
-
-                    console.log(mainCellArray)
-        
+                    count++
         
                 }
-        
-                run(mainCellArray)
 
-            }
+                console.log(count)
+
+                run(mainCellArray)
+            // }
         
+
         
+             animation = window.requestAnimationFrame(runSimulator)
         }
+
+
+
 
         c.translate(0.5, 0.5);
         document.getElementById("btnrandom").addEventListener('click', randomizer);
         document.getElementById("btnclear").addEventListener('click', clearer);
-        document.getElementById("btnrun").addEventListener('click', runSimulator);
+        runner = document.getElementById("btnrun").addEventListener('click', runSimulator)
         document.getElementById("btnpause").addEventListener('click', pauseSimulator);
         canvas.addEventListener('click', handleClick);
         grid();
