@@ -120,6 +120,7 @@ const onload = () => {
 
         const clearer = (e) =>{
             clearGrid()
+
         }
 
         const randomizer = (e) =>{
@@ -177,20 +178,19 @@ const onload = () => {
 
             programRunning = true
 
-            // while (programRunning) {
 
 
                 console.log(programRunning,"prgramruunning")
 
                 const run = (mainCellArray) =>{
-                    count++
+                   
         
                 }
 
                 console.log(count)
 
                 run(mainCellArray)
-            // }
+           
         
 
         
