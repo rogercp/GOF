@@ -76,7 +76,7 @@ const onload = () => {
 
     const mainLogic= ()=>{
         let mainCellArray = [];
-        let programRunning = false;
+        let programRunning = true;
 
         const grid = () => {
         c.beginPath();
@@ -157,66 +157,61 @@ const onload = () => {
     
       
 
-         i = 0 
+         var frameCounter = 0 
        
-         
-           const startAnimation = ()=>{
+           function startAnimation (){
 
-           
-            console.log(i,"i")
-
-                if(++i % 300 == 0){
-                    i = 0
-                    console.log("runninginside")
-
-                    let myblockarray=[];
-                    let startX = Math.floor(Math.random() * (boxSize*3) +4);
-                    let startY = Math.floor(Math.random() * (boxSize*3) +4);
+                if(programRunning === false) return;
                 
-                    myblockarray.push(startX);
-                    myblockarray.push(startY);
-        
-                    let blockCount = 0;
-                    while(blockCount < 50/2){
-                    let myx= Math.floor(Math.random() *8)+ (startX -4)
-                    let myy= Math.floor(Math.random() *8)+ (startY-4)
-                        myblockarray.push(myx);
-                        myblockarray.push(myy);
-                        blockCount ++
-                    }
-            
-                    for (let i =0 ; i< myblockarray.length-2;i+=2){
-                        c.beginPath();
-                        c.fillStyle = "lightblue";
-                        c.fillRect(myblockarray[i]*boxSize, myblockarray[i+1]*boxSize, boxSize, boxSize);
-                        c.closePath();
-                    }
-                    mainCellArray.length = 0;
-                    mainCellArray=[...myblockarray];
-
+                if(++frameCounter % 20){
                     window.requestAnimationFrame(startAnimation)
-                    console.log("hittting end")
-
+                    return false;
                 }
+                   
+                let myblockarray=[];
+                let startX = Math.floor(Math.random() * (boxSize*3) +4);
+                let startY = Math.floor(Math.random() * (boxSize*3) +4);
             
-                         
-                    
-            
-            animation = window.requestAnimationFrame(startAnimation)               
-            
-           
-        }
-         
+                myblockarray.push(startX);
+                myblockarray.push(startY);
+    
+                let blockCount = 0;
+                while(blockCount < 50/2){
+                let myx= Math.floor(Math.random() *8)+ (startX -4)
+                let myy= Math.floor(Math.random() *8)+ (startY-4)
+                    myblockarray.push(myx);
+                    myblockarray.push(myy);
+                    blockCount ++
+                }
         
+                for (let i =0 ; i< myblockarray.length-2;i+=2){
+                    c.beginPath();
+                    c.fillStyle = "lightblue";
+                    c.fillRect(myblockarray[i]*boxSize, myblockarray[i+1]*boxSize, boxSize, boxSize);
+                    c.closePath();
+                }
+                mainCellArray.length = 0;
+                mainCellArray=[...myblockarray];
+
+                animation = window.requestAnimationFrame(startAnimation)
+
+                
+        }
+        
+        function start(){
+            programRunning = true
+            startAnimation()
+        }
+        
+         
   
         const pauseSimulator =(e)=>{
 
-            console.log(programRunning,"prgramruunning")
-
             const pause = ()=>{
-                window.cancelAnimationFrame(animation);
+
                 programRunning = false
-                console.log(programRunning,"prgramruunning")
+                 // window.cancelAnimationFrame(animation);
+
             }
             pause();
         }
@@ -227,7 +222,7 @@ const onload = () => {
         c.translate(0.5, 0.5);
         document.getElementById("btnrandom").addEventListener('click', randomizer);
         document.getElementById("btnclear").addEventListener('click', clearer);
-        runner = document.getElementById("btnrun").addEventListener('click', startAnimation)
+        runner = document.getElementById("btnrun").addEventListener('click', start)
         document.getElementById("btnpause").addEventListener('click', pauseSimulator);
         canvas.addEventListener('click', handleClick);
         grid();
