@@ -1,66 +1,4 @@
 
- data={
-
-    preset1:{
-        block1:{
-            x: 5,
-            y: 15,
-        },
-        block2:{
-            x: 6,
-            y: 16,
-    
-        },
-        block3:{
-            x: 6,
-            y: 17,
-        },
-        block4:{
-    
-            x: 7,
-            y: 14,
-        },
-        block5:{
-            x: 4,
-            y: 15,
-        },
-        block6:{
-    
-            x: 5,
-            y: 17,
-        },
-        block7:{
-            x: 5,
-            y: 16,
-        },
-        block8:{
-    
-            x: 7,
-            y: 19,
-        }
-    },
-    preset2:{
-        x:1,
-        y:2,
-    
-    },
-    
-    preset3:{
-        x:1,
-        y:2,
-        
-    },
-    
-    preset4:{
-        x:1,
-        y:2,
-        
-    
-    },
-    
-    }
-
-
 
 const onload = () => {
     populateMainCanvas();
@@ -73,8 +11,11 @@ const onload = () => {
     c = canvas.getContext("2d"),
     boxSize = 10,
     boxes = Math.floor(400 / boxSize);
+    coordinates = [];
+    frameCounter = 0;
 
     const mainLogic= ()=>{
+
         let mainCellArray = [];
         let programRunning = true;
 
@@ -90,8 +31,15 @@ const onload = () => {
             c.strokeRect(x, y, boxSize, boxSize);
             }
         }
+        for(let i = 0 ; i<boxes;i++){
+             coordinates[i] = [];
+             for(let j =0; j<boxes;j++){
+                coordinates[i][j] = 0
+             }
+        }
         c.closePath();
         }
+
 
         const handleClick = (e)=>{
         c.fillStyle = "lightblue";
@@ -112,9 +60,15 @@ const onload = () => {
                 var y = row * boxSize;
                 c.clearRect(x, y, boxSize, boxSize)
                 c.strokeRect(x, y, boxSize, boxSize);
-
             }
             }
+            for(let i = 0 ; i<boxes;i++){
+                coordinates[i] = [];
+                for(let j =0; j<boxes;j++){
+                   coordinates[i][j] = 0
+                }
+           }
+            
             c.closePath();
         }
 
@@ -123,79 +77,68 @@ const onload = () => {
 
         }
 
-        const randomizer = (e) =>{
-            clearGrid()
+        const randomizer = () =>{
             const  populateRandomly = (numBlocks) =>{
-                let myblockarray=[];
-                let startX = Math.floor(Math.random() * (boxSize*3) +4);
-                let startY = Math.floor(Math.random() * (boxSize*3) +4);
-            
-                myblockarray.push(startX);
-                myblockarray.push(startY);
-    
+                clearGrid();
+                let startX = Math.floor(Math.random() * (boxSize*2) +4);
+                let startY = Math.floor(Math.random() * (boxSize*2) +4);
+                coordinates[startX][startY] = 1;
                 let blockCount = 0;
-                while(blockCount < numBlocks/2){
-                let myx= Math.floor(Math.random() *8)+ (startX -4)
+
+                while(blockCount < numBlocks){
+                let myx= Math.floor(Math.random() *8)+ (startX-4)
                 let myy= Math.floor(Math.random() *8)+ (startY-4)
-                    myblockarray.push(myx);
-                    myblockarray.push(myy);
-                    blockCount ++
+                coordinates[myx][myy] = 1
+                blockCount ++
                 }
-        
-                for (let i =0 ; i< myblockarray.length-2;i+=2){
-                    c.beginPath();
-                    c.fillStyle = "lightblue";
-                    c.fillRect(myblockarray[i]*boxSize, myblockarray[i+1]*boxSize, boxSize, boxSize);
-                    c.closePath();
+                for (let i = 0 ; i<coordinates.length;i++){
+                    innerArray = coordinates[i];
+                        for(let j = 0 ; j<innerArray.length;j++){
+                            if(innerArray[j] === 1){
+                                c.beginPath();
+                                c.fillStyle = "lightblue";
+                                c.fillRect(i*boxSize, j*boxSize, boxSize, boxSize);
+                                c.closePath();
+                            }
+                        }  
                 }
-                mainCellArray.length = 0;
-                mainCellArray=[...myblockarray];
-                return mainCellArray;
             }
-            return populateRandomly(50)
+            return populateRandomly(20)
         }
     
-      
 
-         var frameCounter = 0 
        
            function startAnimation (){
-
                 if(programRunning === false) return;
-                
-                if(++frameCounter % 20){
+        
+                if(++frameCounter % 50){
                     window.requestAnimationFrame(startAnimation)
                     return false;
                 }
                    
-                let myblockarray=[];
-                let startX = Math.floor(Math.random() * (boxSize*3) +4);
-                let startY = Math.floor(Math.random() * (boxSize*3) +4);
-            
-                myblockarray.push(startX);
-                myblockarray.push(startY);
-    
+                let startX = Math.floor(Math.random() * (boxSize*2) +4);
+                let startY = Math.floor(Math.random() * (boxSize*2) +4);
+                coordinates[startX][startY] = 1;
                 let blockCount = 0;
-                while(blockCount < 50/2){
-                let myx= Math.floor(Math.random() *8)+ (startX -4)
+
+                while(blockCount < 20){
+                let myx= Math.floor(Math.random() *8)+ (startX-4)
                 let myy= Math.floor(Math.random() *8)+ (startY-4)
-                    myblockarray.push(myx);
-                    myblockarray.push(myy);
-                    blockCount ++
+                coordinates[myx][myy] = 1
+                blockCount ++
                 }
-        
-                for (let i =0 ; i< myblockarray.length-2;i+=2){
-                    c.beginPath();
-                    c.fillStyle = "lightblue";
-                    c.fillRect(myblockarray[i]*boxSize, myblockarray[i+1]*boxSize, boxSize, boxSize);
-                    c.closePath();
+                for (let i = 0 ; i<coordinates.length;i++){
+                    innerArray = coordinates[i];
+                        for(let j = 0 ; j<innerArray.length;j++){
+                            if(innerArray[j] === 1){
+                                c.beginPath();
+                                c.fillStyle = "lightblue";
+                                c.fillRect(i*boxSize, j*boxSize, boxSize, boxSize);
+                                c.closePath();
+                            }
+                        }
                 }
-                mainCellArray.length = 0;
-                mainCellArray=[...myblockarray];
-
-                animation = window.requestAnimationFrame(startAnimation)
-
-                
+                animation = window.requestAnimationFrame(startAnimation)              
         }
         
         function start(){
@@ -203,15 +146,11 @@ const onload = () => {
             startAnimation()
         }
         
-         
-  
+        
         const pauseSimulator =(e)=>{
-
             const pause = ()=>{
-
                 programRunning = false
                  // window.cancelAnimationFrame(animation);
-
             }
             pause();
         }
@@ -220,12 +159,13 @@ const onload = () => {
 
 
         c.translate(0.5, 0.5);
+        grid();
         document.getElementById("btnrandom").addEventListener('click', randomizer);
         document.getElementById("btnclear").addEventListener('click', clearer);
         runner = document.getElementById("btnrun").addEventListener('click', start)
         document.getElementById("btnpause").addEventListener('click', pauseSimulator);
         canvas.addEventListener('click', handleClick);
-        grid();
+        
 
     }
         
