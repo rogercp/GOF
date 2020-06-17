@@ -155,6 +155,60 @@ const onload = () => {
             return populateRandomly(50)
         }
     
+      
+
+         i = 0 
+       
+         
+           const startAnimation = ()=>{
+
+           
+            console.log(i,"i")
+
+                if(++i % 300 == 0){
+                    i = 0
+                    console.log("runninginside")
+
+                    let myblockarray=[];
+                    let startX = Math.floor(Math.random() * (boxSize*3) +4);
+                    let startY = Math.floor(Math.random() * (boxSize*3) +4);
+                
+                    myblockarray.push(startX);
+                    myblockarray.push(startY);
+        
+                    let blockCount = 0;
+                    while(blockCount < 50/2){
+                    let myx= Math.floor(Math.random() *8)+ (startX -4)
+                    let myy= Math.floor(Math.random() *8)+ (startY-4)
+                        myblockarray.push(myx);
+                        myblockarray.push(myy);
+                        blockCount ++
+                    }
+            
+                    for (let i =0 ; i< myblockarray.length-2;i+=2){
+                        c.beginPath();
+                        c.fillStyle = "lightblue";
+                        c.fillRect(myblockarray[i]*boxSize, myblockarray[i+1]*boxSize, boxSize, boxSize);
+                        c.closePath();
+                    }
+                    mainCellArray.length = 0;
+                    mainCellArray=[...myblockarray];
+
+                    window.requestAnimationFrame(startAnimation)
+                    console.log("hittting end")
+
+                }
+            
+                         
+                    
+            
+            animation = window.requestAnimationFrame(startAnimation)               
+            
+           
+        }
+         
+        
+  
         const pauseSimulator =(e)=>{
 
             console.log(programRunning,"prgramruunning")
@@ -163,38 +217,8 @@ const onload = () => {
                 window.cancelAnimationFrame(animation);
                 programRunning = false
                 console.log(programRunning,"prgramruunning")
-
             }
-            
             pause();
-        }
-
-        const runSimulator = async (e) =>{
-
-
-            let count = 0
-
-            console.log(programRunning,"running")
-
-            programRunning = true
-
-
-
-                console.log(programRunning,"prgramruunning")
-
-                const run = (mainCellArray) =>{
-                   
-        
-                }
-
-                console.log(count)
-
-                run(mainCellArray)
-           
-        
-
-        
-             animation = window.requestAnimationFrame(runSimulator)
         }
 
 
@@ -203,7 +227,7 @@ const onload = () => {
         c.translate(0.5, 0.5);
         document.getElementById("btnrandom").addEventListener('click', randomizer);
         document.getElementById("btnclear").addEventListener('click', clearer);
-        runner = document.getElementById("btnrun").addEventListener('click', runSimulator)
+        runner = document.getElementById("btnrun").addEventListener('click', startAnimation)
         document.getElementById("btnpause").addEventListener('click', pauseSimulator);
         canvas.addEventListener('click', handleClick);
         grid();
