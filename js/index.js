@@ -191,55 +191,33 @@ const onload = () => {
 
                             var blocksAround = 0 
 
-                            if(coordinates[i][j+1]){
+                            if(coordinates[i][j+1] ===1){
                                 blocksAround++
-
                             }
-                            if( coordinates[i][j-1]){
+                            if( coordinates[i][j-1] ===1){
+                                blocksAround++                               
+                            }
+                            if( coordinates[i + 1][j-1] ===1){
                                 blocksAround++
-
-                                
                             }
-
-                            if( coordinates[i + 1][j-1]){
-
+                            if( coordinates[i+1][j]===1){
                                 blocksAround++
-
                             }
-                            if( coordinates[i+1][j]){
-
+                            if( coordinates[i+1][j+1]===1){
                                 blocksAround++
-
                             }
-                            if( coordinates[i+1][j+1]){
-
+                            if(coordinates[i-1][j-1]===1 ){
+                                blocksAround++          
+                            }
+                            if( coordinates[i-1][j]===1){
                                 blocksAround++
-
                             }
-
-                            if(coordinates[i-1][j-1] ){
+                            if( coordinates[i-1][j+1]===1){
                                 blocksAround++
-
-                                
                             }
-                            if( coordinates[i-1][j]){
-
-                                blocksAround++
-
-                            }
-                            if( coordinates[i-1][j+1]){
-
-                                blocksAround++
-
-                            }
-
-                            
-
-                             if(blocksAround >=3){
-
+                            if(blocksAround >=3){
                                 tempCoordinates[i][j] = 1
-
-                                }
+                            }
                         }
                         
                     }
@@ -249,8 +227,12 @@ const onload = () => {
                 console.log(tempCoordinates,"tempcoords")
 
                 clearGrid()
-                coordinates.concat(tempCoordinates)
+                
+
+                coordinates = [...tempCoordinates]
             
+                console.log(coordinates,"coordsafter concat")
+
 
                 for (let i = 0 ; i<tempCoordinates.length;i++){   
                     innerArray = tempCoordinates[i];
@@ -265,7 +247,6 @@ const onload = () => {
                         }
                 }
                 
-                
         }
 
 
@@ -277,7 +258,8 @@ const onload = () => {
                     return false;
                 }
 
-                
+                console.log(coordinates,"first coords")
+
                 eeeeee()
      
 
