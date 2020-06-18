@@ -103,41 +103,185 @@ const onload = () => {
                         }  
                 }
             }
+            // console.log(coordinates)
             return populateRandomly(20)
         }
     
 
-       
-           function startAnimation (){
-                if(programRunning === false) return;
-        
-                if(++frameCounter % 50){
-                    window.requestAnimationFrame(startAnimation)
-                    return false;
-                }
-                   
-                let startX = Math.floor(Math.random() * (boxSize*2) +4);
-                let startY = Math.floor(Math.random() * (boxSize*2) +4);
-                coordinates[startX][startY] = 1;
-                let blockCount = 0;
 
-                while(blockCount < 20){
-                let myx= Math.floor(Math.random() *8)+ (startX-4)
-                let myy= Math.floor(Math.random() *8)+ (startY-4)
-                coordinates[myx][myy] = 1
-                blockCount ++
+        function eeeeee(){
+
+
+            tempCoordinates = [];
+
+              
+               for(let i = 0 ; i<boxes;i++){
+                tempCoordinates[i] = [];
+                for(let j =0; j<boxes;j++){
+                    tempCoordinates[i][j] = 0
                 }
+           }
+
+
+            // console.log(tempCoordinates,"tempcoors")
                 for (let i = 0 ; i<coordinates.length;i++){
-                    innerArray = coordinates[i];
-                        for(let j = 0 ; j<innerArray.length;j++){
-                            if(innerArray[j] === 1){
-                                c.beginPath();
-                                c.fillStyle = "lightblue";
-                                c.fillRect(i*boxSize, j*boxSize, boxSize, boxSize);
-                                c.closePath();
+
+                        for(let j = 0 ; j<coordinates[i].length;j++){
+
+
+                            if(coordinates[i][j] === 1){
+
+                                var blocksAround = 0 
+                                // max is 8
+
+                                // choosing to live or die
+                                if( coordinates[i][j+1] === 1){         
+                                    blocksAround++               
+                                }
+                                if( coordinates[i][j-1] === 1){
+                                    blocksAround++
+                                } 
+                                if( coordinates[i+1][j-1] === 1){
+                                    blocksAround++
+                                } 
+                                if( coordinates[i+1][j] === 1){
+                                    blocksAround++
+                                } 
+                                if( coordinates[i+1][j+1] === 1){
+                                   blocksAround++
+                                } 
+                                if( coordinates[i-1][j-1] === 1){
+                                    blocksAround++
+                                }
+                                if( coordinates[i-1][j] === 1){
+                                    blocksAround++
+                                }
+                                if( coordinates[i-1][j+1] === 1){
+                                    blocksAround++
+                                }
+
+                                // live or die 
+                                if(blocksAround <= 1){
+
+                                    // death
+                                    tempCoordinates[i][j] = 0
+                                }
+                                else if(blocksAround >=2 && blocksAround<=3){
+
+                                    // lives on
+                                    tempCoordinates[i][j] = 1
+                                }
+                                else if(blocksAround >=4){
+
+                                        // death
+                                    tempCoordinates[i][j] = 0
+                                }
+                                
+
                             }
                         }
                 }
+
+                for (let i = 1 ; i<coordinates.length - 2 ;i++){
+
+                    for(let j = 1 ; j<coordinates[i].length - 2;j++){
+
+
+                        if( coordinates[i][j]  === 0){
+
+                            var blocksAround = 0 
+
+                            if(coordinates[i][j+1]){
+                                blocksAround++
+
+                            }
+                            if( coordinates[i][j-1]){
+                                blocksAround++
+
+                                
+                            }
+
+                            if( coordinates[i + 1][j-1]){
+
+                                blocksAround++
+
+                            }
+                            if( coordinates[i+1][j]){
+
+                                blocksAround++
+
+                            }
+                            if( coordinates[i+1][j+1]){
+
+                                blocksAround++
+
+                            }
+
+                            if(coordinates[i-1][j-1] ){
+                                blocksAround++
+
+                                
+                            }
+                            if( coordinates[i-1][j]){
+
+                                blocksAround++
+
+                            }
+                            if( coordinates[i-1][j+1]){
+
+                                blocksAround++
+
+                            }
+
+                            
+
+                             if(blocksAround >=3){
+
+                                tempCoordinates[i][j] = 1
+
+                                }
+                        }
+                        
+                    }
+            }
+              
+                console.log(coordinates,"coords")
+                console.log(tempCoordinates,"tempcoords")
+
+                clearGrid()
+                coordinates.concat(tempCoordinates)
+            
+
+                for (let i = 0 ; i<tempCoordinates.length;i++){   
+                    innerArray = tempCoordinates[i];
+                        for(let j = 0 ; j<innerArray.length;j++){
+                                if(innerArray[j] === 1){
+                                    c.beginPath();
+                                    c.fillStyle = "lightblue";
+                                    c.fillRect(i*boxSize, j*boxSize, boxSize, boxSize);
+                                    c.closePath();
+                                 }
+
+                        }
+                }
+                
+                
+        }
+
+
+           function startAnimation (){
+                if(programRunning === false) return;
+        
+                if(++frameCounter % 100){
+                    window.requestAnimationFrame(startAnimation)
+                    return false;
+                }
+
+                
+                eeeeee()
+     
+
+            
                 animation = window.requestAnimationFrame(startAnimation)              
         }
         
@@ -168,6 +312,7 @@ const onload = () => {
         
 
     }
+    
         
     mainLogic()
 
@@ -178,7 +323,28 @@ const onload = () => {
 
 
 
+   // let startX = Math.floor(Math.random() * (boxSize*2) +4);
+                // let startY = Math.floor(Math.random() * (boxSize*2) +4);
+                // coordinates[startX][startY] = 1;
+                // let blockCount = 0;
 
+                // while(blockCount < 20){
+                // let myx= Math.floor(Math.random() *8)+ (startX-4)
+                // let myy= Math.floor(Math.random() *8)+ (startY-4)
+                // coordinates[myx][myy] = 1
+                // blockCount ++
+                // }
+                // for (let i = 0 ; i<coordinates.length;i++){
+                //     innerArray = coordinates[i];
+                //         for(let j = 0 ; j<innerArray.length;j++){
+                //             if(innerArray[j] === 1){
+                //                 c.beginPath();
+                //                 c.fillStyle = "lightblue";
+                //                 c.fillRect(i*boxSize, j*boxSize, boxSize, boxSize);
+                //                 c.closePath();
+                //             }
+                //         }
+                // }
 
 
 
