@@ -33,6 +33,7 @@ const onload = () => {
     coordinates = [];
     frameCounter = 0;
     boxColor = "#000000";
+    speed = 20;
 
     const mainLogic= ()=>{
 
@@ -129,11 +130,17 @@ const onload = () => {
 
         const changeColor =(e)=>{
 
-          console.log( e.target.value,'hitting color')
             
          
             boxColor = `${e.target.value}`
 
+
+        }
+
+        const changeSpeed =(e)=>{
+
+
+            speed = e.target.value
 
         }
 
@@ -260,7 +267,7 @@ const onload = () => {
            function startAnimation (){
                 if(programRunning === false) return;
         
-                if(++frameCounter % 20){
+                if(++frameCounter % speed){
                     window.requestAnimationFrame(startAnimation)
                     return false;
                 }
@@ -297,11 +304,10 @@ const onload = () => {
         document.getElementById("btnclear").addEventListener('click', clearer);
         runner = document.getElementById("btnrun").addEventListener('click', start)
         document.getElementById("btnpause").addEventListener('click', pauseSimulator);
-
         colorpicker = document.querySelector('.js-bg-color-picker');
-
         colorpicker.addEventListener("change",changeColor)
-        
+        document.getElementById("myRange").addEventListener('change', changeSpeed);
+
         canvas.addEventListener('click', handleClick);
         
 

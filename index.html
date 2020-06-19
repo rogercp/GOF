@@ -68,12 +68,18 @@
         </h3>
         <div class="d-flex flex-column align-items-center m-2">
 
-          <div>
-          <div class="bg-color">
-            <input type="color" id="background_color" class="js-bg-color-picker" data-theme-value="--background-color" />
+          <div class="d-flex " >
+            <div class="bg-color mr-5">
+              <input type="color" id="background_color" class="js-bg-color-picker" data-theme-value="--background-color" />
+              </div>
+              
+            <div class="slidecontainer ml-5">
+              <input type="range" min="1" max="100" value="20" class="slider" id="myRange">
             </div>
+            
+         
           </div>
-          
+
           <canvas id="gridCanvas" width="400" height="400">
           </canvas>
           <div class="m-2">
