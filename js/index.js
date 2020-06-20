@@ -140,7 +140,7 @@ const onload = () => {
         const changeSpeed =(e)=>{
 
 
-            speed = e.target.value
+            speed =  e.target.value
 
         }
 
@@ -237,7 +237,7 @@ const onload = () => {
                             if( coordinates[i-1][j+1]===1){
                                 blocksAround++
                             }
-                            if(blocksAround >=3){
+                            if(blocksAround === 3){
                                 tempCoordinates[i][j] = 1
                             }
                         }
