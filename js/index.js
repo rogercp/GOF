@@ -26,10 +26,32 @@ const onload = () => {
 
   const populateMainCanvas = () => {
 
-    var canvas = document.getElementById("gridCanvas"),
+   
+
+    screenWith = window.screen.width
+    var canvas = document.getElementById("gridCanvas")
+    if(screenWith < 400){
+        canvas.setAttribute("width","300")
+        canvas.setAttribute("height","300")
+    }else{
+        canvas.setAttribute("width","400")
+        canvas.setAttribute("height","400")
+
+    }
+
     c = canvas.getContext("2d"),
     boxSize = 10,
-    boxes = Math.floor(400 / boxSize);
+    boxes = null
+
+    if(screenWith <= 400){
+        boxes = Math.floor(300 / boxSize);
+
+    }else{
+        boxes = Math.floor(400 / boxSize);
+
+
+    }
+    
     coordinates = [];
     frameCounter = 0;
     boxColor = "#000000";
@@ -43,7 +65,7 @@ const onload = () => {
         const grid = () => {
         c.beginPath();
         c.fillStyle = "white";
-        c.lineWidth = 1;
+        c.lineWidth = .1;
         c.strokeStyle = 'black';
         for (var row = 0; row < boxes; row++) {
             for (var column = 0; column < boxes; column++) {
@@ -73,7 +95,7 @@ const onload = () => {
         const clearGrid = () =>{
             c.beginPath();
             c.fillStyle = "white";
-            c.lineWidth = 1;
+            c.lineWidth = .1;
             c.strokeStyle = 'black';
             for (var row = 0; row < boxes; row++) {
                 for (var column = 0; column < boxes; column++) {
@@ -99,16 +121,20 @@ const onload = () => {
         }
 
         const randomizer = () =>{
+         
+       
             const  populateRandomly = (numBlocks) =>{
                 clearGrid();
-                let startX = Math.floor(Math.random() * (boxSize*2) +4);
-                let startY = Math.floor(Math.random() * (boxSize*2) +4);
+
+                let startX = Math.floor(Math.random() * (((boxes===300) ? 30: 40)) +2);
+                let startY = Math.floor(Math.random() * (((boxes ===300) ? 30: 40)) +2);
+
                 coordinates[startX][startY] = 1;
                 let blockCount = 0;
 
                 while(blockCount < numBlocks){
-                let myx= Math.floor(Math.random() *5)+ (startX-2)
-                let myy= Math.floor(Math.random() *5)+ (startY-2)
+                let myx= Math.floor(Math.random() *4)+ (startX-2)
+                let myy= Math.floor(Math.random() *4)+ (startY-2)
                 coordinates[myx][myy] = 1
                 blockCount ++
                 }
@@ -125,7 +151,7 @@ const onload = () => {
                 }
             }
             // console.log(coordinates)
-            return populateRandomly(8)
+            return populateRandomly(20)
         }
 
         const changeColor =(e)=>{
@@ -206,8 +232,8 @@ const onload = () => {
                         }
                 }
 
-                for (let i = 1 ; i<coordinates.length - 2 ;i++){
-                    for(let j = 1 ; j<coordinates[i].length - 2;j++){
+                for (let i = 1 ; i<coordinates.length - 1 ;i++){
+                    for(let j = 1 ; j<coordinates[i].length - 1;j++){
 
                         if( coordinates[i][j]  === 0){
 
