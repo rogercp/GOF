@@ -45,11 +45,10 @@
 
   <nav id ="navBar" class="bg-light d-flex flex-column justify-content-center align-items-center mb-4">
 
-    <div class="d-flex flex-column flex-md-row" >
+    <div id="button_2" class="d-flex flex-md-row" >
       
      <a class="nav-link"  href="#game"> <button type="button" id="btnhome" class="btn btn-outline-info  " >Game</button></a>
    
-     <i class="navbar-item">
       <a class="nav-link" href="#about"><button type="button" id="btnabout" class="btn btn-outline-info " >About</button></a>
  
     </div>
@@ -122,15 +121,7 @@
     
     </div>
 
-    <div class="d-flex flex-column m-5">
-      
-      <!-- <Button  id="btncolor" class="btncolor btn-outline-info m-1 ">red</Button> -->
-      <!-- <Button  id="btncolor" class="btncolor btn-outline-info m-1 ">lightblue</Button>
-      <Button  id="btncolor"  class="btncolor btn-outline-info m-1 ">yellow</Button>
 
-     -->
-     
-    </div>
     </div>
     
     
@@ -142,46 +133,82 @@
 
   <div class="d-flex flex-column align-items-center m-2">
 
-    <h3>What is Conways game of Life?</h3>
-    <div>
-      <p class="">
-
-
-        Where does it come from?
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in
-         a piece of classical Latin literature from 45 BC, making it over 2000 years old. Ri
-         chard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up
-          one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and goi
-          ng through the cites of the word in classical literature, discovered the undoubtable
-           source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-            Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a 
-            treatise on the theory of ethics, very popular during the Renaissance. The first line 
-            of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-        
-        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interes
-        ted. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also r
-        eproduced in their exact original form, accompanied by English versions from the 1914 transla
-        tion by H. Rackham.
-        
-        Where can I get some?
-        There are many variations of passages of Lorem Ipsum available, but the majority have suffere
-        d alteration in some form, by injected humour, or randomised words which don't look even slig
-        htly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is
-        n't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the In
-        ternet tend to repeat predefined chunks as necessary, making this the first true generator on the
-         Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentenc
-         e structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is theref
-         ore always free from repetition, injected humour, or non-characteristic words etc.
-        
-  
-  
-        
-  
-  
-      </p>
-
-    </div>
    
+   
+
+    <div class="card" style="width: 80%">
+      <div class="card-body">
+        
+    <div>
+      <h5>Rules</h4>
+      <ol>
+        <li>
+
+          Any live cell with fewer than two live neighbours dies, as if by under population.
+        </li>
+        <li>
+
+          Any live cell with two or three live neighbours lives on to the next generation.
+        </li>
+        <li>
+
+          Any live cell with more than three live neighbors dies, as if by overpopulation.
+        </li>
+        <li>
+          Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+        </li>
+
+      <ol>
+
+      </div>
+      </div>
+    </div>
+
+
+
+
+
+      <div class="card" style="width: 80%">
+        <div class="card-body">
+          <h5 class="card-title">What is the Game of Life?</h5>
+          <p>by Paul Callahan</p>
+
+          <h6>The Game</h6>
+          <p>The Game of Life (or simply Life) is not a game in the conventional sense. 
+            There are no players, and no winning or losing. Once the "pieces" are placed 
+            in the starting position, the rules determine everything that happens later.
+             Nevertheless, Life is full of surprises! In most cases, it is impossible to 
+             look at a starting position (or pattern) and see what will happen in the future.
+              The only way to find out is to follow the rules of the game.</p>
+          
+          
+      <h6>Background</h6> 
+      <p>Life was invented by the mathematician John Conway in 1970. He choose the 
+        rules carefully after trying many other possibilities, some of which caused 
+        the cells to die too fast and others which caused too many cells to be born. 
+        Life balances these tendencies, making it hard to tell whether a pattern will 
+        die out completely, form a stable population, or grow forever.
+  
+        Life is just one example of a cellular automaton, which is any system in which 
+        rules are applied to cells and their neighbors in a regular grid.
+  
+          There has been much recent interest in cellular automata, a field of mathematical 
+          research. Life is one of the simplest cellular automata to have been studied, but 
+          many others have been invented, often to simulate systems in the real world.
+  
+        In addition to the original rules, Life can be played on other kinds of grids with more 
+        complex patterns. There are rules for playing on hexagons arranged in a honeycomb pattern, 
+        and games where cells can have more than two states (imagine live cells with different colors).
+            </p>
+    
+          <a href="http://www.math.com/students/wonders/life/life.html" class="card-link">full article</a>
+        </div>
+      </div>
+
+
+
+
 
 
   </div>

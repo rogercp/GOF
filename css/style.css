@@ -2,6 +2,7 @@
 body {
     font-family: "Open Sans", sans-serif;
     color: #2b2e3b;
+    
   }
   
   @media (min-width: 992px) {
@@ -76,5 +77,10 @@ z-index: 100;
 .section{
 
 padding-top: 60px;
+
+}
+#button_2{
+
+ 
 
 }
