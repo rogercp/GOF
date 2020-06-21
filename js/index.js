@@ -59,7 +59,6 @@ const onload = () => {
 
     const mainLogic= ()=>{
 
-        let mainCellArray = [];
         let programRunning = true;
 
         const grid = () => {
@@ -126,16 +125,18 @@ const onload = () => {
             const  populateRandomly = (numBlocks) =>{
                 clearGrid();
 
-                let startX = Math.floor(Math.random() * (((boxes===300) ? 30: 40)) +2);
-                let startY = Math.floor(Math.random() * (((boxes ===300) ? 30: 40)) +2);
+                let startX = Math.floor(Math.random() * (((boxes===300) ? 6: 10)) +(((boxes===300) ? 9: 13)) );
+                let startY = Math.floor(Math.random() * (((boxes ===300) ? 6: 10)) +(((boxes===300) ? 9: 13)) );
 
                 coordinates[startX][startY] = 1;
                 let blockCount = 0;
 
                 while(blockCount < numBlocks){
-                let myx= Math.floor(Math.random() *4)+ (startX-2)
-                let myy= Math.floor(Math.random() *4)+ (startY-2)
+                let myx= Math.floor(Math.random() *5)+ (startX-2)
+                let myy= Math.floor(Math.random() *5)+ (startY-2)
+
                 coordinates[myx][myy] = 1
+                
                 blockCount ++
                 }
                 for (let i = 0 ; i<coordinates.length;i++){
@@ -151,23 +152,15 @@ const onload = () => {
                 }
             }
             // console.log(coordinates)
-            return populateRandomly(20)
+            return populateRandomly(15)
         }
 
         const changeColor =(e)=>{
-
-            
-         
             boxColor = `${e.target.value}`
-
-
         }
 
         const changeSpeed =(e)=>{
-
-
             speed =  e.target.value
-
         }
 
 
@@ -298,12 +291,7 @@ const onload = () => {
                     return false;
                 }
 
-                console.log(coordinates,"first coords")
-
                 live_or_die()
-     
-
-            
                 animation = window.requestAnimationFrame(startAnimation)              
         }
         
@@ -312,16 +300,12 @@ const onload = () => {
             startAnimation()
         }
         
-        
         const pauseSimulator =(e)=>{
             const pause = ()=>{
                 programRunning = false
-                 // window.cancelAnimationFrame(animation);
             }
             pause();
         }
-
-
 
 
         c.translate(0.5, 0.5);
@@ -333,20 +317,14 @@ const onload = () => {
         colorpicker = document.querySelector('.js-bg-color-picker');
         colorpicker.addEventListener("change",changeColor)
         document.getElementById("myRange").addEventListener('change', changeSpeed);
-
         canvas.addEventListener('click', handleClick);
         
 
     }
-    
-        
+     
     mainLogic()
-
-
-    
+ 
 }
-
-
 
 
 

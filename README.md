@@ -1,1 +1,1 @@
-# GOF
+# Conways Game Of Life
