@@ -160,7 +160,7 @@ const onload = () => {
         }
 
         const changeSpeed =(e)=>{
-            speed =  e.target.value
+            speed =  e.target.value 
         }
 
 
