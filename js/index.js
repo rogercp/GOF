@@ -151,9 +151,58 @@ const onload = () => {
                         }  
                 }
             }
-            // console.log(coordinates)
             return populateRandomly(15)
         }
+
+
+        const preSet1 = () =>{
+         
+            const  preSet1Fun = () =>{
+                clearGrid();
+
+                let startX = 8;
+                let startY = 8;
+
+                coordinates[startX][startY] = 1;
+
+
+                for (let i = 0 ; i<coordinates.length;i++){
+                    innerArray = coordinates[i];
+                        for(let j = 0 ; j<innerArray.length;j++){
+                            if(innerArray[j] === 1){
+                                
+                                coordinates[i-1][j] = 1
+                                coordinates[i+1][j] = 1
+                                coordinates[i][j-2] = 1
+                                coordinates[i+1][j+1] = 1
+
+                            }
+                        }  
+                }
+
+
+                
+                for (let i = 0 ; i<coordinates.length;i++){
+                    innerArray = coordinates[i];
+                        for(let j = 0 ; j<innerArray.length;j++){
+                            if(innerArray[j] === 1){
+                                c.beginPath();
+                                c.fillStyle = boxColor;
+                                c.fillRect(i*boxSize, j*boxSize, boxSize, boxSize);
+                                c.closePath();
+                            }
+                        }  
+                }
+            }
+            // console.log(coordinates)
+            return preSet1Fun()
+        }
+
+
+
+
+
+
 
         const changeColor =(e)=>{
             boxColor = `${e.target.value}`
@@ -165,7 +214,9 @@ const onload = () => {
 
 
         function live_or_die(){
+
             tempCoordinates = [];
+
                for(let i = 0 ; i<boxes;i++){
                 tempCoordinates[i] = [];
                 for(let j =0; j<boxes;j++){
@@ -264,7 +315,8 @@ const onload = () => {
                     }
             }
               
-                clearGrid()              
+                clearGrid()   
+                           
                 coordinates = [...tempCoordinates]
     
                  for (let i = 0 ; i<tempCoordinates.length;i++){   
@@ -317,6 +369,9 @@ const onload = () => {
         colorpicker = document.querySelector('.js-bg-color-picker');
         colorpicker.addEventListener("change",changeColor)
         document.getElementById("myRange").addEventListener('change', changeSpeed);
+        document.getElementById("preSet1").addEventListener('click', preSet1);
+
+        
         canvas.addEventListener('click', handleClick);
         
 

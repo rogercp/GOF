@@ -79,8 +79,6 @@ z-index: 100;
 padding-top: 60px;
 
 }
-#button_2{
-
- 
-
+.card{
+  max-width: 900px;
 }
