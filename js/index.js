@@ -187,7 +187,7 @@ const onload = () => {
                         coordinates[13][11] = 1;
                         coordinates[14][11] = 1;
                         coordinates[15][11] = 1;
-        
+    
                         coordinates[8][12] = 1;
                         coordinates[10][12] = 1;
                         coordinates[11][12] = 1;
@@ -224,15 +224,22 @@ const onload = () => {
                         coordinates[5][7] = 1;
                         break;
 
-                        default:
-                            clearGrid();
+                    case "preSet4":
+                        coordinates[11][11] = 1;
+                        coordinates[11][12] = 1;
+                        coordinates[11][13] = 1;
+                        coordinates[10][13] = 1;
+                        coordinates[9][12] = 1;
+                        break;
+
+                    default:
+                        clearGrid();
 
 
                 }
 
 
-                 
-
+                
                 for (let i = 0 ; i<coordinates.length;i++){
                     innerArray = coordinates[i];
                         for(let j = 0 ; j<innerArray.length;j++){
@@ -423,7 +430,8 @@ const onload = () => {
         document.getElementById("preSet1").addEventListener('click', preSet);
         document.getElementById("preSet2").addEventListener('click', preSet);
         document.getElementById("preSet3").addEventListener('click', preSet);
-
+        document.getElementById("preSet4").addEventListener('click', preSet);
+        
         canvas.addEventListener('click', handleClick);
         
 

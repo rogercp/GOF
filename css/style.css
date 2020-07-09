@@ -82,3 +82,27 @@ padding-top: 60px;
 .card{
   max-width: 900px;
 }
+
+#presets{
+  
+  display:flex;
+  flex-direction: column;
+}
+.presetCanvas{
+
+  width: 100px;
+  height: 100px;
+
+}
+@media (max-width: 400px) {
+  #presets{
+
+    flex-direction: row;
+  }
+  .presetCanvas{
+
+    width: 40px;
+    height: 40px;
+  
+  }
+}
