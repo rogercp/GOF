@@ -1,5 +1,4 @@
 
-
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -11,9 +10,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
   
   $(function(){ 
-    var navMain = $(".navbar-collapse"); // avoid dependency on #id
-    // "a:not([data-toggle])" - to avoid issues caused
-    // when you have dropdown inside navbar
+    var navMain = $(".navbar-collapse"); 
     navMain.on("click", "a:not([data-toggle])", null, function () {
         navMain.collapse('hide');
     });
@@ -21,12 +18,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 const onload = () => {
     populateMainCanvas();
-
   }
 
   const populateMainCanvas = () => {
-
-   
 
     screenWith = window.screen.width
     var canvas = document.getElementById("gridCanvas")
@@ -38,7 +32,6 @@ const onload = () => {
         canvas.setAttribute("height","400")
 
     }
-
     c = canvas.getContext("2d"),
     boxSize = 10,
     boxes = null
@@ -51,16 +44,13 @@ const onload = () => {
 
 
     }
-    
     coordinates = [];
     frameCounter = 0;
     boxColor = "#000000";
     speed = 20;
 
     const mainLogic= ()=>{
-
         let programRunning = true;
-
         const grid = () => {
         c.beginPath();
         c.fillStyle = "white";
@@ -155,33 +145,91 @@ const onload = () => {
         }
 
 
-        const preSet1 = () =>{
+        const preSet1 = (preset) =>{
          
-            const  preSet1Fun = () =>{
+            const  preSet1Fun = (preset) =>{
                 clearGrid();
+                // let startX = 8;
+                // let startY = 8;
+                // coordinates[startX][startY] = 1;
 
-                let startX = 8;
-                let startY = 8;
+                // for (let i = 0 ; i<coordinates.length;i++){
+                //     innerArray = coordinates[i];
+                //         for(let j = 0 ; j<innerArray.length;j++){
+                //             if(innerArray[j] === 1){
 
-                coordinates[startX][startY] = 1;
+       //     }
+                        // }  
+                // }
+
+                switch(preset)
+                {
+                    case 1:
+                        coordinates[11][11] = 1;
+                        coordinates[11][12] = 1;
+                        coordinates[12][11] = 1;
+                        coordinates[12][12] = 1;
+                        coordinates[13][13] = 1;
+                        coordinates[14][13] = 1;
+                        coordinates[13][14] = 1;
+                        coordinates[14][14] = 1;
+                        break;
+
+                    case 2:
+                        coordinates[8][11] = 1;
+                        coordinates[9][11] = 1;
+                        coordinates[10][11] = 1;
+                        coordinates[11][11] = 1;
+                        coordinates[12][11] = 1;
+                        coordinates[13][11] = 1;
+                        coordinates[14][11] = 1;
+                        coordinates[15][11] = 1;
+        
+                        coordinates[8][12] = 1;
+                        coordinates[10][12] = 1;
+                        coordinates[11][12] = 1;
+                        coordinates[12][12] = 1;
+                        coordinates[13][12] = 1;
+                        coordinates[15][12] = 1;
+        
+                        coordinates[8][13] = 1;
+                        coordinates[9][13] = 1;
+                        coordinates[10][13] = 1;
+                        coordinates[11][13] = 1;
+                        coordinates[12][13] = 1;
+                        coordinates[13][13] = 1;
+                        coordinates[14][13] = 1;
+                        coordinates[15][13] = 1;
+                        break;
+
+                    case 3:
+                        coordinates[4][3] = 1;
+                        coordinates[5][3] = 1;
+        
+                        coordinates[3][4] = 1;
+                        coordinates[4][4] = 1;
+                        coordinates[5][4] = 1;
+        
+                        coordinates[3][5] = 1;
+                        coordinates[4][5] = 1;
+                        coordinates[6][5] = 1;
+        
+                        coordinates[4][6] = 1;
+                        coordinates[5][6] = 1;
+                        coordinates[6][6] = 1;
+        
+                        coordinates[5][7] = 1;
+                        break;
+
+                        default:
+                            clearGrid();
 
 
-                for (let i = 0 ; i<coordinates.length;i++){
-                    innerArray = coordinates[i];
-                        for(let j = 0 ; j<innerArray.length;j++){
-                            if(innerArray[j] === 1){
-                                
-                                coordinates[i-1][j] = 1
-                                coordinates[i+1][j] = 1
-                                coordinates[i][j-2] = 1
-                                coordinates[i+1][j+1] = 1
-
-                            }
-                        }  
                 }
 
 
-                
+                 
+
                 for (let i = 0 ; i<coordinates.length;i++){
                     innerArray = coordinates[i];
                         for(let j = 0 ; j<innerArray.length;j++){
@@ -194,8 +242,7 @@ const onload = () => {
                         }  
                 }
             }
-            // console.log(coordinates)
-            return preSet1Fun()
+            return preSet1Fun(preset)
         }
 
 
@@ -369,9 +416,11 @@ const onload = () => {
         colorpicker = document.querySelector('.js-bg-color-picker');
         colorpicker.addEventListener("change",changeColor)
         document.getElementById("myRange").addEventListener('change', changeSpeed);
-        document.getElementById("preSet1").addEventListener('click', preSet1);
 
-        
+        document.getElementById("preSet1").addEventListener('click', preSet1);
+        document.getElementById("preSet2").addEventListener('click', preSet1);
+        document.getElementById("preSet3").addEventListener('click', preSet1);
+
         canvas.addEventListener('click', handleClick);
         
 
