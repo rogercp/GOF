@@ -145,9 +145,12 @@ const onload = () => {
         }
 
 
-        const preSet1 = (preset) =>{
+        const preSet = () =>{
          
-            const  preSet1Fun = (preset) =>{
+            let preset = event.srcElement.id;
+
+            const  preSetSwitch = (preset) =>{
+                
                 clearGrid();
                 // let startX = 8;
                 // let startY = 8;
@@ -164,7 +167,7 @@ const onload = () => {
 
                 switch(preset)
                 {
-                    case 1:
+                    case "preSet1":
                         coordinates[11][11] = 1;
                         coordinates[11][12] = 1;
                         coordinates[12][11] = 1;
@@ -175,7 +178,7 @@ const onload = () => {
                         coordinates[14][14] = 1;
                         break;
 
-                    case 2:
+                    case "preSet2":
                         coordinates[8][11] = 1;
                         coordinates[9][11] = 1;
                         coordinates[10][11] = 1;
@@ -202,7 +205,7 @@ const onload = () => {
                         coordinates[15][13] = 1;
                         break;
 
-                    case 3:
+                    case "preSet3":
                         coordinates[4][3] = 1;
                         coordinates[5][3] = 1;
         
@@ -242,7 +245,7 @@ const onload = () => {
                         }  
                 }
             }
-            return preSet1Fun(preset)
+            return preSetSwitch(preset)
         }
 
 
@@ -417,9 +420,9 @@ const onload = () => {
         colorpicker.addEventListener("change",changeColor)
         document.getElementById("myRange").addEventListener('change', changeSpeed);
 
-        document.getElementById("preSet1").addEventListener('click', preSet1);
-        document.getElementById("preSet2").addEventListener('click', preSet1);
-        document.getElementById("preSet3").addEventListener('click', preSet1);
+        document.getElementById("preSet1").addEventListener('click', preSet);
+        document.getElementById("preSet2").addEventListener('click', preSet);
+        document.getElementById("preSet3").addEventListener('click', preSet);
 
         canvas.addEventListener('click', handleClick);
         
